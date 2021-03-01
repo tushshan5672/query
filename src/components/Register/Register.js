@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -22,15 +22,20 @@ class Register extends React.Component {
     this.setState({password: event.target.value})
   }
 
+
+   
+
+
   onSubmitSignIn = () => {
-    fetch('http://localhost:3000/register', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
+              
+              console.log(this.state.name,this.state.email,this.state.password)
+
+    axios.post('http://localhost:3000/register', {
+
         email: this.state.email,
         password: this.state.password,
         name: this.state.name
-      })
+      
     })
       .then(response => response.json())
       .then(user => {
@@ -40,6 +45,7 @@ class Register extends React.Component {
         }
       })
   }
+
 
   render() {
     return (
